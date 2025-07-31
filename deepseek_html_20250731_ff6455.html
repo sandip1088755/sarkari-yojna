@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सरकारी योजना - सभी सरकारी योजनाओं की जानकारी</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind', 'Nirmala UI', sans-serif;
+        }
+
+        :root {
+            --primary: #1a5fb4;
+            --secondary: #2d7d46;
+            --accent: #c64600;
+            --light: #f5f5f5;
+            --dark: #222;
+            --gray: #666;
+            --light-gray: #eee;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary: #62a0ea;
+            --secondary: #57e389;
+            --accent: #ff7800;
+            --light: #1a1a1a;
+            --dark: #f0f0f0;
+            --gray: #aaa;
+            --light-gray: #333;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #0e3a70);
+            color: white;
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .search-bar {
+            display: flex;
+            margin-left: 20px;
+        }
+
+        .search-bar input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            width: 250px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .search-bar button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            border-radius: var(--border-radius);
+            margin: 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e05500;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: #0e3a70;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .post-card {
+            background: #2d2d2d;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .post-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .post-category {
+            background: var(--secondary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .post-title {
+            font-size: 1.3rem;
+            margin: 10px 0;
+            color: var(--dark);
+        }
+
+        .post-excerpt {
+            color: var(--gray);
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="dark"] .sidebar {
+            background: #2d2d2d;
+        }
+
+        .sidebar h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            color: var(--dark);
+        }
+
+        .categories {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .categories li {
+            margin-bottom: 10px;
+        }
+
+        .categories a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+
+        .categories a:hover {
+            color: var(--primary);
+        }
+
+        .popular-posts .post {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+
+        .popular-posts .post-img {
+            width: 80px;
+            height: 60px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .popular-posts .post-title {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), #0e3a70);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 99;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="dark"] .admin-panel {
+            background: #2d2d2d;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            padding: 10px 20px;
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .admin-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .admin-content {
+            display: none;
+        }
+
+        .admin-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background: var(--light);
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .form-control {
+            border-color: #444;
+            background: #333;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 95, 180, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .posts-list {
+            list-style: none;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .posts-list {
+            background: #333;
+        }
+
+        .post-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        [data-theme="dark"] .post-item {
+            border-bottom: 1px solid #444;
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-item .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .edit-btn {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Login Form */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-form {
+            max-width: 400px;
+            width: 90%;
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        [data-theme="dark"] .login-form {
+            background: #2d2d2d;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .form-group .error {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            background: var(--secondary);
+            color: white;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin: 15px 0 0;
+            }
+            
+            .search-bar input {
+                width: 100%;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        पोस्ट सफलतापूर्वक प्रकाशित की गई!
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-landmark fa-2x"></i>
+                <h1>सरकारी योजना</h1>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">होम</a></li>
+                    <li><a href="#">योजनाएँ</a></li>
+                    <li><a href="#">किसान योजना</a></li>
+                    <li><a href="#">पेंशन योजना</a></li>
+                    <li><a href="#">शिक्षा योजना</a></li>
+                    <li><a href="#">संपर्क</a></li>
+                    <li><a href="#" id="loginBtn">लॉगिन</a></li>
+                </ul>
+            </nav>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="योजना खोजें...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>सभी सरकारी योजनाओं की जानकारी हिंदी में</h2>
+            <p>पेंशन योजना, किसान योजना, राशन कार्ड, शिक्षा योजना और अन्य सरकारी स्कीमों की पूरी जानकारी</p>
+            <a href="#" class="btn">सभी योजनाएँ देखें</a>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-content">
+            <!-- Blog Posts -->
+            <div class="blog-posts" id="postsContainer">
+                <!-- Posts will be loaded dynamically -->
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>योजना श्रेणियाँ</h3>
+                <ul class="categories" id="categoriesList">
+                    <!-- Categories will be loaded dynamically -->
+                </ul>
+                
+                <h3>लोकप्रिय योजनाएँ</h3>
+                <div class="popular-posts" id="popularPosts">
+                    <!-- Popular posts will be loaded dynamically -->
+                </div>
+                
+                <h3>सरकारी पोर्टल</h3>
+                <ul class="categories">
+                    <li><a href="#">भारत सरकार पोर्टल</a></li>
+                    <li><a href="#">योजना आयोग</a></li>
+                    <li><a href="#">नरेगा पोर्टल</a></li>
+                    <li><a href="#">आयुष्मान भारत</a></li>
+                    <li><a href="#">पीएम किसान</a></li>
+                </ul>
+            </aside>
+        </div>
+        
+        <!-- Admin Panel -->
+        <div class="admin-panel" id="adminPanel">
+            <div class="admin-header">
+                <h2>एडमिन डैशबोर्ड</h2>
+                <button id="logoutBtn" class="btn">लॉग आउट</button>
+            </div>
+            
+            <div class="admin-tabs">
+                <div class="admin-tab active" data-tab="dashboard">डैशबोर्ड</div>
+                <div class="admin-tab" data-tab="addPost">पोस्ट जोड़ें</div>
+                <div class="admin-tab" data-tab="managePosts">पोस्ट प्रबंधित करें</div>
+                <div class="admin-tab" data-tab="categories">श्रेणियाँ</div>
+            </div>
+            
+            <!-- Dashboard Content -->
+            <div class="admin-content active" id="dashboardContent">
+                <h3>ब्लॉग विवरण</h3>
+                <div class="stats">
+                    <div style="display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+                        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; text-align: center; width: 150px;">
+                            <div style="font-size: 2rem; font-weight: bold; color: #2196f3;" id="totalPosts">0</div>
+                            <div>कुल पोस्ट</div>
+                        </div>
+                        <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; text-align: center; width: 150px;">
+                            <div style="font-size: 2rem; font-weight: bold; color: #4caf50;" id="totalCategories">0</div>
+                            <div>श्रेणियाँ</div>
+                        </div>
+                        <div style="background: #fff3e0; padding: 20px; border-radius: 8px; text-align: center; width: 150px;">
+                            <div style="font-size: 2rem; font-weight: bold; color: #ff9800;">1,254</div>
+                            <div>कुल विजिटर</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px;">हाल की पोस्ट</h3>
+                <div id="recentPosts" style="margin-top: 20px;">
+                    <!-- Recent posts will be shown here -->
+                </div>
+            </div>
+            
+            <!-- Add Post Content -->
+            <div class="admin-content" id="addPostContent">
+                <h3>नई पोस्ट जोड़ें</h3>
+                <form id="addPostForm">
+                    <div class="form-group">
+                        <label for="postTitle">पोस्ट शीर्षक</label>
+                        <input type="text" id="postTitle" class="form-control" placeholder="पोस्ट का शीर्षक दर्ज करें" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="postCategory">श्रेणी</label>
+                        <select id="postCategory" class="form-control" required>
+                            <!-- Categories will be populated dynamically -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="postImage">फीचर इमेज URL</label>
+                        <input type="text" id="postImage" class="form-control" placeholder="इमेज का URL दर्ज करें" required>
+                        <small>उदाहरण: https://example.com/image.jpg</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="postContent">पोस्ट विवरण</label>
+                        <textarea id="postContent" class="form-control" placeholder="पोस्ट की विस्तृत जानकारी दर्ज करें" rows="8" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" id="postSubmitBtn">पोस्ट प्रकाशित करें</button>
+                </form>
+            </div>
+            
+            <!-- Manage Posts Content -->
+            <div class="admin-content" id="managePostsContent">
+                <h3>पोस्ट प्रबंधित करें</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchPosts" placeholder="पोस्ट खोजें...">
+                </div>
+                
+                <ul class="posts-list" id="postsList">
+                    <!-- Posts will be loaded here -->
+                </ul>
+            </div>
+            
+            <!-- Categories Content -->
+            <div class="admin-content" id="categoriesContent">
+                <h3>श्रेणियाँ प्रबंधित करें</h3>
+                
+                <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <h4>मौजूदा श्रेणियाँ</h4>
+                        <ul class="posts-list" id="adminCategoriesList">
+                            <!-- Categories will be loaded here -->
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px;">
+                        <h4>नई श्रेणी जोड़ें</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="newCategory" placeholder="श्रेणी का नाम">
+                        </div>
+                        <button id="addCategoryBtn" class="btn">श्रेणी जोड़ें</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>सरकारी योजना</h3>
+                    <p>सभी सरकारी योजनाओं की जानकारी हिंदी में। पेंशन योजना, किसान योजना, राशन कार्ड, शिक्षा योजना और अन्य सरकारी स्कीमों की पूरी जानकारी।</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>महत्वपूर्ण लिंक</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">होम</a></li>
+                        <li><a href="#">हमारे बारे में</a></li>
+                        <li><a href="#">संपर्क करें</a></li>
+                        <li><a href="#">गोपनीयता नीति</a></li>
+                        <li><a href="#">अस्वीकरण</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>लोकप्रिय श्रेणियाँ</h3>
+                    <ul class="footer-links" id="footerCategories">
+                        <!-- Popular categories will be loaded here -->
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>संपर्क करें</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@sarkariyojna.com</li>
+                        <li><i class="fas fa-phone"></i> +91 9876543210</li>
+                        <li><i class="fas fa-map-marker-alt"></i> नई दिल्ली, भारत</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 सरकारी योजना ब्लॉग. सर्वाधिकार सुरक्षित।
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-form">
+            <button class="close-btn" id="closeLogin">&times;</button>
+            <h2>एडमिन लॉगिन</h2>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="username">यूजरनेम</label>
+                    <input type="text" id="username" class="form-control" placeholder="यूजरनेम दर्ज करें" required>
+                    <div class="error" id="usernameError">कृपया सही यूजरनेम दर्ज करें</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">पासवर्ड</label>
+                    <input type="password" id="password" class="form-control" placeholder="पासवर्ड दर्ज करें" required>
+                    <div class="error" id="passwordError">कृपया सही पासवर्ड दर्ज करें</div>
+                </div>
+                
+                <button type="submit" class="btn btn-secondary">लॉगिन करें</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for initial posts
+        let blogPosts = [
+            {
+                id: 1,
+                title: "पीएम किसान सम्मान निधि योजना: 2000 रुपये कब मिलेंगे?",
+                category: "किसान योजना",
+                date: "15 जून, 2023",
+                image: "https://images.unsplash.com/photo-1604871000636-074fa5117945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                excerpt: "पीएम किसान सम्मान निधि योजना के तहत किसानों को 2000 रुपये की सहायता राशि कब मिलेगी? जानिए पूरी जानकारी...",
+                content: "पीएम किसान सम्मान निधि योजना के तहत किसानों को हर चार महीने में 2000 रुपये की सहायता राशि दी जाती है। यह राशि सीधे किसानों के बैंक खाते में ट्रांसफर की जाती है।"
+            },
+            {
+                id: 2,
+                title: "अटल पेंशन योजना: कैसे करें आवेदन और क्या हैं लाभ?",
+                category: "पेंशन योजना",
+                date: "10 जून, 2023",
+                image: "https://images.unsplash.com/photo-1582564286939-2a1d748c4447?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                excerpt: "अटल पेंशन योजना के तहत कैसे आवेदन करें? क्या हैं योग्यता और लाभ? जानिए सब कुछ हिंदी में...",
+                content: "अटल पेंशन योजना भारत सरकार द्वारा शुरू की गई एक महत्वपूर्ण पेंशन योजना है जो देश के नागरिकों को वृद्धावस्था में आर्थिक सुरक्षा प्रदान करती है।"
+            }
+        ];
+
+        // Sample categories
+        let categories = ["किसान योजना", "पेंशन योजना", "शिक्षा योजना", "स्वास्थ्य योजना", "राशन कार्ड", "महिला योजना", "बेरोजगार योजना"];
+
+        // DOM Elements
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const adminPanel = document.getElementById('adminPanel');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const postsContainer = document.getElementById('postsContainer');
+        const postsList = document.getElementById('postsList');
+        const addPostForm = document.getElementById('addPostForm');
+        const categoriesList = document.getElementById('categoriesList');
+        const adminCategoriesList = document.getElementById('adminCategoriesList');
+        const footerCategories = document.getElementById('footerCategories');
+        const addCategoryBtn = document.getElementById('addCategoryBtn');
+        const newCategory = document.getElementById('newCategory');
+        const totalPosts = document.getElementById('totalPosts');
+        const totalCategories = document.getElementById('totalCategories');
+        const searchPosts = document.getElementById('searchPosts');
+        const postCategory = document.getElementById('postCategory');
+        const popularPosts = document.getElementById('popularPosts');
+        const notification = document.getElementById('notification');
+        const postSubmitBtn = document.getElementById('postSubmitBtn');
+        const recentPosts = document.getElementById('recentPosts');
+
+        // Theme Toggle
+        function updateThemeIcon() {
+            if (body.getAttribute('data-theme') === 'dark') {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon();
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+            localStorage.setItem('theme', body.getAttribute('data-theme'));
+            updateThemeIcon();
+        });
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+
+        // Login Modal
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+
+        closeLogin.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Admin Login
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple authentication
+            if (username === 'admin' && password === 'admin123') {
+                loginModal.style.display = 'none';
+                adminPanel.style.display = 'block';
+                localStorage.setItem('isLoggedIn', 'true');
+                window.scrollTo({ top: adminPanel.offsetTop, behavior: 'smooth' });
+            } else {
+                if (username !== 'admin') {
+                    document.getElementById('usernameError').style.display = 'block';
+                } else {
+                    document.getElementById('usernameError').style.display = 'none';
+                }
+                
+                if (password !== 'admin123') {
+                    document.getElementById('passwordError').style.display = 'block';
+                } else {
+                    document.getElementById('passwordError').style.display = 'none';
+                }
+            }
+        });
+
+        // Check if user is already logged in
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            adminPanel.style.display = 'block';
+        }
+
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            adminPanel.style.display = 'none';
+            localStorage.removeItem('isLoggedIn');
+        });
+
+        // Admin Tabs
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const adminContents = document.querySelectorAll('.admin-content');
+        
+        adminTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                adminTabs.forEach(t => t.classList.remove('active'));
+                adminContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}Content`).classList.add('active');
+            });
+        });
+
+        // Render blog posts
+        function renderPosts(posts = blogPosts) {
+            postsContainer.innerHTML = '';
+            
+            posts.forEach(post => {
+                const postElement = document.createElement('article');
+                postElement.className = 'post-card';
+                postElement.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" class="post-img">
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> ${post.date}</span>
+                            <span class="post-category">${post.category}</span>
+                        </div>
+                        <h3 class="post-title">${post.title}</h3>
+                        <p class="post-excerpt">${post.excerpt}</p>
+                        <a href="#" class="btn">पूरा पढ़ें</a>
+                    </div>
+                `;
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        // Render posts for management
+        function renderManagePosts(posts = blogPosts) {
+            postsList.innerHTML = '';
+            
+            posts.forEach(post => {
+                const postItem = document.createElement('li');
+                postItem.className = 'post-item';
+                postItem.innerHTML = `
+                    <div>
+                        <div><strong>${post.title}</strong></div>
+                        <div>${post.category} | ${post.date}</div>
+                    </div>
+                    <div class="actions">
+                        <button class="action-btn edit-btn" data-id="${post.id}"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" data-id="${post.id}"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                postsList.appendChild(postItem);
+            });
+            
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const postId = parseInt(e.target.closest('.delete-btn').getAttribute('data-id'));
+                    deletePost(postId);
+                });
+            });
+            
+            // Add event listeners to edit buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const postId = parseInt(e.target.closest('.edit-btn').getAttribute('data-id'));
+                    editPost(postId);
+                });
+            });
+        }
+
+        // Render categories
+        function renderCategories() {
+            // Sidebar categories
+            categoriesList.innerHTML = '';
+            categories.forEach(category => {
+                const count = blogPosts.filter(p => p.category === category).length;
+                const categoryItem = document.createElement('li');
+                categoryItem.innerHTML = `<a href="#">${category} <span>(${count})</span></a>`;
+                categoriesList.appendChild(categoryItem);
+            });
+            
+            // Admin categories
+            adminCategoriesList.innerHTML = '';
+            categories.forEach(category => {
+                const categoryItem = document.createElement('li');
+                categoryItem.className = 'post-item';
+                categoryItem.innerHTML = `
+                    <div>${category}</div>
+                    <div class="actions">
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                adminCategoriesList.appendChild(categoryItem);
+            });
+            
+            // Footer categories
+            footerCategories.innerHTML = '';
+            categories.slice(0, 5).forEach(category => {
+                const categoryItem = document.createElement('li');
+                categoryItem.innerHTML = `<a href="#">${category}</a>`;
+                footerCategories.appendChild(categoryItem);
+            });
+            
+            // Update category count
+            totalCategories.textContent = categories.length;
+        }
+
+        // Populate category dropdown
+        function populateCategoryDropdown() {
+            postCategory.innerHTML = '<option value="">श्रेणी चुनें</option>';
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                postCategory.appendChild(option);
+            });
+        }
+
+        // Show notification
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Render popular posts
+        function renderPopularPosts() {
+            popularPosts.innerHTML = '';
+            blogPosts.slice(0, 3).forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post';
+                postElement.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" class="post-img">
+                    <div>
+                        <h4 class="post-title">${post.title}</h4>
+                        <span><i class="far fa-calendar"></i> ${post.date}</span>
+                    </div>
+                `;
+                popularPosts.appendChild(postElement);
+            });
+        }
+
+        // Render recent posts in dashboard
+        function renderRecentPosts() {
+            recentPosts.innerHTML = '';
+            blogPosts.slice(0, 3).forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-item';
+                postElement.innerHTML = `
+                    <div>
+                        <div><strong>${post.title}</strong></div>
+                        <div>${post.category} | ${post.date}</div>
+                    </div>
+                    <div class="actions">
+                        <button class="action-btn edit-btn" data-id="${post.id}"><i class="fas fa-edit"></i></button>
+                    </div>
+                `;
+                recentPosts.appendChild(postElement);
+            });
+        }
+
+        // Add new post
+        addPostForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const newPost = {
+                id: Date.now(),
+                title: document.getElementById('postTitle').value,
+                category: document.getElementById('postCategory').value,
+                date: new Date().toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+                image: document.getElementById('postImage').value,
+                excerpt: document.getElementById('postContent').value.substring(0, 100) + '...',
+                content: document.getElementById('postContent').value
+            };
+            
+            blogPosts.unshift(newPost);
+            renderPosts();
+            renderManagePosts();
+            renderPopularPosts();
+            renderRecentPosts();
+            renderCategories();
+            updatePostCount();
+            
+            // Reset form
+            addPostForm.reset();
+            postSubmitBtn.textContent = 'पोस्ट प्रकाशित करें';
+            
+            // Show notification
+            showNotification('पोस्ट सफलतापूर्वक प्रकाशित की गई!');
+        });
+
+        // Add new category
+        addCategoryBtn.addEventListener('click', () => {
+            const categoryName = newCategory.value.trim();
+            if (categoryName && !categories.includes(categoryName)) {
+                categories.push(categoryName);
+                renderCategories();
+                populateCategoryDropdown();
+                newCategory.value = '';
+                showNotification(`"${categoryName}" श्रेणी सफलतापूर्वक जोड़ी गई!`);
+            } else if (categories.includes(categoryName)) {
+                showNotification('यह श्रेणी पहले से मौजूद है!');
+            }
+        });
+
+        // Delete post
+        function deletePost(postId) {
+            if (confirm('क्या आप वाकई इस पोस्ट को हटाना चाहते हैं?')) {
+                blogPosts = blogPosts.filter(post => post.id !== postId);
+                renderPosts();
+                renderManagePosts();
+                renderPopularPosts();
+                renderRecentPosts();
+                updatePostCount();
+                showNotification('पोस्ट सफलतापूर्वक हटाई गई!');
+            }
+        }
+
+        // Edit post
+        function editPost(postId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (post) {
+                // Switch to Add Post tab
+                adminTabs.forEach(t => t.classList.remove('active'));
+                adminContents.forEach(c => c.classList.remove('active'));
+                
+                document.querySelector('[data-tab="addPost"]').classList.add('active');
+                document.getElementById('addPostContent').classList.add('active');
+                
+                // Fill form with post data
+                document.getElementById('postTitle').value = post.title;
+                document.getElementById('postCategory').value = post.category;
+                document.getElementById('postImage').value = post.image;
+                document.getElementById('postContent').value = post.content;
+                
+                // Change button text
+                postSubmitBtn.textContent = 'पोस्ट अपडेट करें';
+                
+                // Store the post ID in the form
+                addPostForm.dataset.editing = postId;
+            }
+        }
+
+        // Search posts
+        searchPosts.addEventListener('input', () => {
+            const searchTerm = searchPosts.value.toLowerCase();
+            const filteredPosts = blogPosts.filter(post => 
+                post.title.toLowerCase().includes(searchTerm) || 
+                post.category.toLowerCase().includes(searchTerm) ||
+                post.content.toLowerCase().includes(searchTerm)
+            );
+            renderManagePosts(filteredPosts);
+        });
+
+        // Update post count
+        function updatePostCount() {
+            totalPosts.textContent = blogPosts.length;
+        }
+
+        // Initialize
+        function init() {
+            renderPosts();
+            renderManagePosts();
+            renderCategories();
+            populateCategoryDropdown();
+            renderPopularPosts();
+            renderRecentPosts();
+            updatePostCount();
+        }
+
+        // Initialize the app
+        init();
+    </script>
+</body>
+</html>
